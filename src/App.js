@@ -16,7 +16,7 @@ class App extends Component {
       .get(URL)
       .then(response => {
         console.log(response);
-        this.setState({ tasks: response.data.tasks });
+        this.setState({ tasks: response.data });
       })
       .catch(function(error) {
         console.log(error);

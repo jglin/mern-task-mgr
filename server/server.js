@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { ObjectID } = require('mongodb');
 
-const { Task } = require('./models/Task');
+const Task = require('./models/Task');
 
 const app = express();
 
@@ -12,71 +12,74 @@ require('./modules/database');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/tasks', (req, res) => {
-  console.log(`post /tasks req.body: ${req.body}`);
-  let task = new Task({
-    title: req.body.title
-  });
-  task.save().then(
-    doc => {
-      res.send(doc);
-    },
-    e => {
-      res.status(400).send(e);
-    }
-  );
-});
+const taskRouter = require('./routes/task.router');
+app.use('/tasks', taskRouter);
 
-app.get('/tasks', (req, res) => {
-  Task.find().then(
-    tasks => {
-      res.send({ tasks });
-    },
-    e => {
-      res.status(400).send(e);
-    }
-  );
-});
+// app.post('/tasks', (req, res) => {
+//   console.log(`post /tasks req.body: ${req.body}`);
+//   let task = new Task({
+//     title: req.body.title
+//   });
+//   task.save().then(
+//     doc => {
+//       res.send(doc);
+//     },
+//     e => {
+//       res.status(400).send(e);
+//     }
+//   );
+// });
 
-app.get('/tasks/:id', (req, res) => {
-  let id = req.params.id;
+// app.get('/tasks', (req, res) => {
+//   Task.find().then(
+//     tasks => {
+//       res.send({ tasks });
+//     },
+//     e => {
+//       res.status(400).send(e);
+//     }
+//   );
+// });
 
-  if (!ObjectID.isValid(id)) {
-    return res.status(404).send();
-  }
+// app.get('/tasks/:id', (req, res) => {
+//   let id = req.params.id;
 
-  Task.findById(id)
-    .then(task => {
-      if (!task) {
-        return res.status(404).send();
-      }
+//   if (!ObjectID.isValid(id)) {
+//     return res.status(404).send();
+//   }
 
-      res.send({ task });
-    })
-    .catch(e => {
-      res.status(400).send();
-    });
-});
+//   Task.findById(id)
+//     .then(task => {
+//       if (!task) {
+//         return res.status(404).send();
+//       }
 
-app.delete('/tasks/:id', (req, res) => {
-  let id = req.params.id;
+//       res.send({ task });
+//     })
+//     .catch(e => {
+//       res.status(400).send();
+//     });
+// });
 
-  if (!ObjectID.isValid(id)) {
-    return res.status(404).send();
-  }
+// app.delete('/tasks/:id', (req, res) => {
+//   let id = req.params.id;
 
-  Task.findByIdAndRemove(id)
-    .then(task => {
-      if (!task) {
-        return res.status(404).send();
-      }
+//   if (!ObjectID.isValid(id)) {
+//     return res.status(404).send();
+//   }
 
-      res.send({ task });
-    })
-    .catch(e => {
-      res.status(400).send();
-    });
-});
+//   Task.findByIdAndRemove(id)
+//     .then(task => {
+//       if (!task) {
+//         return res.status(404).send();
+//       }
+
+//       res.send({ task });
+//     })
+//     .catch(e => {
+//       res.status(400).send();
+//     });
+// });
 
 const PORT = process.env.PORT || 5000;
 
