@@ -10,12 +10,13 @@ let TaskSchema = new Schema(
       trim: true
     },
     completed: {
-      type: Boolean,
-      default: false
+      type: String,
+      default: 'undone',
+      required: true
     },
     completedAt: {
       type: Date,
-      default: null
+      default: null //'2017-06-01'
     }
   },
   { collection: 'tasks' }

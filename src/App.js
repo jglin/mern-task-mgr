@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Table from './Table';
-import Form from './Form';
+import AddTaskForm from './AddTaskForm';
+import SearchTaskForm from './SearchTaskForm';
 const axios = require('axios');
 
 const URL = '/tasks';
@@ -15,7 +16,7 @@ class App extends Component {
     axios
       .get(URL)
       .then(response => {
-        console.log(response);
+        //console.log(response);
         this.setState({ tasks: response.data });
       })
       .catch(function(error) {
@@ -40,7 +41,7 @@ class App extends Component {
   //     });
   // };
 
-  handleSubmit = async task => {
+  handleCreate = async task => {
     let createdTask = await axios
       .post(URL, task)
       .then(res => {
@@ -60,7 +61,7 @@ class App extends Component {
     axios
       .delete(`${URL}/${id}`)
       .then(res => {
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch(e => {
         console.log(e);
@@ -84,7 +85,9 @@ class App extends Component {
         <p>Add a task with a title to the table.</p>
         <Table taskData={tasks} removeTask={this.handleDelete} />
         <h3>Add New</h3>
-        <Form handleSubmit={this.handleSubmit} />
+        <AddTaskForm handleSubmit={this.handleCreate} />
+        <h3>Search Tasks</h3>
+        <SearchTaskForm handleSubmit={this.handleSearch} />
       </div>
     );
   }

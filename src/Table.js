@@ -6,7 +6,8 @@ const TableHeader = () => {
       <tr>
         <th>Id</th>
         <th>Title</th>
-        <th>Complete</th>
+        <th>Completed</th>
+        <th>Completed At</th>
       </tr>
     </thead>
   );
@@ -19,6 +20,7 @@ const TableBody = props => {
         <td>{row._id}</td>
         <td>{row.title}</td>
         <td>{row.completed}</td>
+        <td>{row.completedAt}</td>
         <td>
           <button onClick={() => props.removeTask(row._id)}>Delete</button>
         </td>

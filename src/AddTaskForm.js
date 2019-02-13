@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+class AddTaskForm extends Component {
   constructor(props) {
     super(props);
 
     this.initialState = {
       title: '',
       completed: '',
+      completedAt: '',
       log: '2222'
     };
 
@@ -27,7 +28,7 @@ class Form extends Component {
   };
 
   render() {
-    const { title, completed, startDate } = this.state;
+    const { title, completed, completedAt } = this.state;
 
     return (
       <form onSubmit={this.onFormSubmit}>
@@ -45,10 +46,17 @@ class Form extends Component {
           value={completed}
           onChange={this.handleChange}
         />
+        <label>Completed At</label>
+        <input
+          type="date"
+          name="completedAt"
+          value={completedAt}
+          onChange={this.handleChange}
+        />
         <input type="button" value="Submit" onClick={this.submitForm} />
       </form>
     );
   }
 }
 
-export default Form;
+export default AddTaskForm;

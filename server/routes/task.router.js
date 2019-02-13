@@ -34,8 +34,11 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  //console.log('Req: ', req);
   let task = new Task({
-    title: req.body.title
+    title: req.body.title,
+    completed: req.body.completed,
+    completedAt: req.body.completedAt
   });
   task.save().then(
     doc => {
