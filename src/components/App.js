@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Table from './Table';
-import AddTaskForm from './AddTaskForm';
-import SearchTaskForm from './SearchTaskForm';
+import Table from './Home/Table';
+import AddTaskForm from './Home/AddTaskForm';
+import SearchTaskForm from './Home/SearchTaskForm';
 const axios = require('axios');
 
 const URL = '/tasks';
