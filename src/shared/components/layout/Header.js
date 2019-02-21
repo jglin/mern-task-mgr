@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 //import logo from '../../images/logo.svg';
 
 class Header extends Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string
-  };
-
   render() {
     const {
       title = 'Welcome to React',
@@ -21,5 +16,10 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string
+};
 
 export default Header;
