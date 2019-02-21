@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Header from '../shared/components/layout/Header';
+import Content from '../shared/components/layout/Content';
+import Footer from '../shared/components/layout/Footer';
 import Table from './Home/Table';
 import AddTaskForm from './Home/AddTaskForm';
 import SearchTaskForm from './Home/SearchTaskForm';
@@ -81,6 +84,7 @@ class App extends Component {
 
     return (
       <div className="container">
+        <Header title="Welcome to Task Mgr" />
         <h1>React Tutorial {this.state.log}</h1>
         <p>Add a task with a title to the table.</p>
         <Table taskData={tasks} removeTask={this.handleDelete} />
@@ -88,6 +92,7 @@ class App extends Component {
         <AddTaskForm handleSubmit={this.handleCreate} />
         <h3>Search Tasks</h3>
         <SearchTaskForm handleSubmit={this.handleSearch} />
+        <Footer />
       </div>
     );
   }
