@@ -77,6 +77,36 @@ class Home extends Component {
     });
   };
 
+  handleSearch = async query => {
+    console.log('query: ', query);
+    console.log('query end date: ', query.endDate);
+
+    axios
+      .get(URL, {
+        params: {
+          startDate: query.startDate,
+          endDate: query.endDate
+        }
+      })
+      .then(response => {
+        //console.log(response);
+        this.setState({ tasks: response.data });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    // let createdTask = await axios
+    //   .post(URL, task)
+    //   .then(res => {
+    //     return res.data;
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
+    // this.setState({ tasks: [...this.state.tasks, createdTask] });
+  };
+
   render() {
     const { tasks } = this.state;
 

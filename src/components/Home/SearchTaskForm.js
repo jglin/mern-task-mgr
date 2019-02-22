@@ -6,8 +6,7 @@ class SearchTaskForm extends Component {
 
     this.initialState = {
       startDate: '',
-      endDate: '',
-      log: '2222'
+      endDate: ''
     };
 
     this.state = this.initialState;
@@ -31,7 +30,6 @@ class SearchTaskForm extends Component {
 
     return (
       <form onSubmit={this.onFormSubmit}>
-        <h2>Log: {this.state.log}</h2>
         <label>Start Date</label>
         <input
           type="date"

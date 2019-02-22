@@ -3,14 +3,32 @@ const Task = require('../models/Task');
 const { ObjectID } = require('mongodb');
 
 router.get('/', (req, res) => {
-  Task.find()
-    .then(response => {
-      res.send(response);
+  if (Object.keys(req.query).length === 0) {
+    // find all
+    Task.find()
+      .then(response => {
+        res.send(response);
+      })
+      .catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  } else {
+    // Need some error handling here
+    let startDate = req.query['startDate'];
+    let endDate = req.query['endDate'];
+    // find between dates
+    Task.find({
+      completedAt: { $gte: startDate, $lt: endDate }
     })
-    .catch(error => {
-      console.log(error);
-      res.sendStatus(500);
-    });
+      .then(response => {
+        res.send(response);
+      })
+      .catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  }
 });
 
 router.get('/:id', (req, res) => {
