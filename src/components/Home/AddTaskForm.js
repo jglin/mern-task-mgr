@@ -6,21 +6,30 @@ class AddTaskForm extends Component {
 
     this.initialState = {
       title: '',
-      completed: '',
-      completedAt: '',
-      log: '2222'
+      completed: false,
+      completedAt: ''
     };
 
     this.state = this.initialState;
   }
 
   handleChange = event => {
-    const { name, value } = event.target;
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
 
     this.setState({
       [name]: value
     });
   };
+
+  // handleChange = event => {
+  //   const { name, value } = event.target;
+
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
   submitForm = () => {
     this.props.handleSubmit(this.state);
@@ -32,7 +41,7 @@ class AddTaskForm extends Component {
 
     return (
       <form onSubmit={this.onFormSubmit}>
-        <label>Title{this.state.log}</label>
+        <label>Title</label>
         <input
           type="text"
           name="title"
@@ -41,9 +50,9 @@ class AddTaskForm extends Component {
         />
         <label>Completed</label>
         <input
-          type="text"
+          type="checkbox"
           name="completed"
-          value={completed}
+          checked={completed}
           onChange={this.handleChange}
         />
         <label>Completed At</label>

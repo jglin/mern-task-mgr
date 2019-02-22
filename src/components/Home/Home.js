@@ -14,8 +14,7 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      tasks: [],
-      log: []
+      tasks: []
     };
   }
 
@@ -55,9 +54,6 @@ class Home extends Component {
       .catch(e => {
         console.log(e);
       });
-    this.setState({
-      log: `POST: ${JSON.stringify(createdTask, undefined, 2)}`
-    });
     this.setState({ tasks: [...this.state.tasks, createdTask] });
   };
 
@@ -86,7 +82,7 @@ class Home extends Component {
 
     return (
       <div className="Home">
-        <h1>React Tutorial {this.state.log}</h1>
+        <h1>React Tutorial</h1>
         <p>Add a task with a title to the table.</p>
         <Table taskData={tasks} removeTask={this.handleDelete} />
         <h3>Add New</h3>
