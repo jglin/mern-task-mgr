@@ -7,23 +7,26 @@
 - npm
 - node
 - MongoDB
-- RoboMongo
+- Install `nodemon` globally: `npm i nodemon -g`
 
-### Config
+### Get the code
 
-- You need a proxy to enable the front end React app to use the Node Express back end. So `"proxy": "http://localhost:5000/"` was added to `package.json`. Because of using proxy, we won't need a fully qualified URL in our REST calls.
-- Use `concurrently` package to run React App client and Node server with one command. The `–kill-others-on-fail` flag will kill other processes if one exits with a non zero status code. See the `dev` script in `package.json` for how it is used.
+- Go to https://github.com/joeg3/mern-task-mgr and fork the repository
+- `git clone https://github.com/MY_FORKED_REPO/mern-task-mgr`. # Substitute the name of your fork
+- `cd mern-task-mgr`
+- `npm install`
 
 ### Start the app
 
 - `mongod --dbpath ~/tmp/mongo-data` # Start MongoDB, specifying the directory that holds the database
-
-- Istall `nodemon` globally: `npm i nodemon -g`
-- Run npm run server
-- Run npm run client
+- `npm run dev`
 - Navigate to localhost:3000
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Config Notes
+
+- You need a proxy to enable the front end React app to use the Node Express back end. So `"proxy": "http://localhost:5000/"` was added to `package.json`. Because of using proxy, we won't need a fully qualified URL in our REST calls.
+- Use `concurrently` package to run React App client and Node server with one command. The `–kill-others-on-fail` flag will kill other processes if one exits with a non zero status code. See the `dev` script in `package.json` for how it is used.
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
